@@ -28,7 +28,7 @@ jobs:
        name: CarApiJar
     - name: Test run
       run: |
-       java -jar ./build/libs/cars-api.jar &
+       java -jar cars-api.jar &
        sleep 30
        curl http://localhost/5000/cars/1 | grep -i "Ford"
     
