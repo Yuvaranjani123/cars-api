@@ -17,4 +17,10 @@ jobs:
       with:
         path: ./build/libs/
         retention-days: 5
+ Test:
+  runs-on: ubuntu-latest
+  steps:
+    - uses: actions/checkout@v2
+    - name: Execute the artefact
+      run: java .jar ./build/libs/cars-api.jar
     
