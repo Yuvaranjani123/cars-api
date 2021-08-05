@@ -4,9 +4,12 @@ jobs:
  Build:
    runs-on: ubuntu-latest
    steps:
+    - uses: actions/checkout@v2 
     - name: Check Java Version
       run: java --version
-    - name: Build using Gradle
-      run: /gradlew --version
+    - name: Validate Gradle wrapper
+      uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
+    - name: Build with Gradle
+      run: ./gradlew build
   
     
