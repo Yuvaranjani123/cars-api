@@ -15,13 +15,20 @@ jobs:
     - name: Upload the file
       uses: actions/upload-artifact@v2
       with:
+        name: CarApiJar
         path: ./build/libs/
         retention-days: 5
  Test:
   runs-on: ubuntu-latest
   needs: Build
   steps:
-    - uses: actions/checkout@v2
-    - name: Execute the artefact
-      run: java .jar ./build/libs/cars-api.jar
+    - name: Download the artefact
+      uses: actions/download-artifact@v2
+      with:
+       name: CarApiJar
+    - name: Test run
+      run: |
+       java -jar ./build/libs/cars-api.jar &
+       sleep 30
+       curl http://localhost/5000/cars/1
     
